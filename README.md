@@ -1,1 +1,1 @@
-# cat-mouse-simulator
+# Cat and Mouse Minimax Strategy Simulator
