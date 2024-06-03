@@ -1,6 +1,7 @@
 # simulation.py
 import pygame
 import time
+import math
 from termcolor import colored
 
 from constants import WIDTH, HEIGHT, GRID_SIZE, MAX_MOVES, MOVE_DELAY, MUTE_PATH, UNMUTE_PATH
@@ -122,7 +123,7 @@ class Simulation:
         play_sound(self.move_sound)
 
     def is_adjacent(self, pos1, pos2):
-        return abs(pos1[0] - pos2[0]) <= 1 and abs(pos1[1] - pos2[1]) <= 1
+        return euclidean_distance(pos1, pos2) <= math.sqrt(2)
 
     def minimax(self, cat_pos, mouse_pos, depth, is_maximizing):
         if depth == 0 or cat_pos == mouse_pos:
