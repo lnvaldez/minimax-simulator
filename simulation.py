@@ -4,7 +4,7 @@ import time
 from termcolor import colored
 
 from constants import WIDTH, HEIGHT, GRID_SIZE, MAX_MOVES, MOVE_DELAY, MUTE_PATH, UNMUTE_PATH
-from utils import get_random_position, manhattan_distance, draw_restart_message
+from utils import get_random_position, euclidean_distance, draw_restart_message
 from sounds import load_sounds, play_sound
 from grid import draw_grid
 from characters import Cat, Mouse
@@ -86,7 +86,7 @@ class Simulation:
         best_value = float('inf')
         valid_moves = self.get_valid_moves(self.cat_pos, self.cat_prev_pos, is_cat=True)
         for move in valid_moves:
-            value = manhattan_distance(move, self.mouse_pos)
+            value = euclidean_distance(move, self.mouse_pos)
             if value < best_value:
                 best_value = value
                 best_move = move
@@ -126,7 +126,7 @@ class Simulation:
 
     def minimax(self, cat_pos, mouse_pos, depth, is_maximizing):
         if depth == 0 or cat_pos == mouse_pos:
-            return manhattan_distance(cat_pos, mouse_pos)
+            return euclidean_distance(cat_pos, mouse_pos)
 
         if is_maximizing:
             max_eval = float('-inf')

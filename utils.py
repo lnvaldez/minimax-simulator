@@ -1,5 +1,6 @@
 import random
 import pygame
+import math
 
 def get_random_position(grid_size, exclude_positions):
     while True:
@@ -13,8 +14,8 @@ def resize_image(image, width, height):
     resized_image = pygame.transform.scale(image, (new_width, height))
     return resized_image
 
-def manhattan_distance(pos1, pos2):
-    return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
+def euclidean_distance(pos1, pos2):
+    return math.sqrt((pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2)
 
 def draw_restart_message(screen, width, height):
     font = pygame.font.SysFont(None, 48)
